@@ -35,21 +35,21 @@ import { readAcoFile } from 'adobe-aco';
 
 ## Types
 
-- `Swatch` - `[number[], colorSpace, name]`
+- `Swatch` - `[number[], string, string]` - `[values, space, name]`
 
-## `createAcoFile(swatches: Swatch[], preserve = false): ArrayBuffer`
+### `createAcoFile(swatches: Swatch[], preserve = false): ArrayBuffer`
 
 Creates a new `.aco` file from the given swatches. Returns an `ArrayBuffer`;
 
 By default, this function will assume that the swatches given to it are in standard ranges (i.e. 0÷255 for RGB, see [Color ranges](#color-ranges)) and normalize them to the 16-bit integer range used by `.aco` files. Optionally you may pass `true` as the second argument to disable this behavior.
 
-## `readAcoFile(data: ArrayBuffer, preserve = false): Swatch[]`
+### `readAcoFile(data: ArrayBuffer, preserve = false): Swatch[]`
 
 Reads an .aco file, in the form of an `ArrayBuffer`. Returns an array of `Swatch`es.
 
 By default, this function will normalize the extracted colors to a standard range (i.e. 0÷255 for RGB, see [Color ranges](#color-ranges)), as within `.aco` files they are stored as 16-bit integers. Optionally you may pass `true` as the second argument to disable this behavior.
 
-## Color ranges
+### Color ranges
 
 If you're not planning on using the `preserve` option then you only need the `Standardized range`.
 
