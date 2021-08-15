@@ -1,3 +1,5 @@
+import { AcoColorSpaceName } from "./AcoColorSpace";
+
 const INT_16_MAX = 65535;
 
 function normalize(
