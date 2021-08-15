@@ -1,0 +1,17 @@
+{
+  "name": "adobe-aco",
+  "version": "0.1.0",
+  "description": "read and create Adobe .aco color swatches",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": "https://github.com/szydlovski/adobe-aco",
+  "keywords": ["adobe", "aco", "palette"],
+  "author": {
+    "name": "Kamil Szydlowski",
+    "email": "kamil.szydlovski@gmail.com",
+    "url": "https://szydlovski.com"
+  },
+  "license": "MIT"
+}
