@@ -1,8 +1,8 @@
-import { BinaryFileReader } from "../binaryFile";
-import { AcoColorSpace, lookupColorSpaceName } from "./AcoColorSpace";
-import { AcoFileError } from "./AcoFileError";
-import { scaleAcoColorValues } from "./helpers";
-import { Swatch, AcoFileVersion, AcoColorValues } from "./types";
+import { BinaryFileReader } from "@szydlovski/binary-file";
+import { AcoColorSpace, lookupColorSpaceName } from "./AcoColorSpace.js";
+import { AcoFileError } from "./AcoFileError.js";
+import { scaleAcoColorValues } from "./helpers.js";
+import { Swatch, AcoFileVersion, AcoColorValues } from "./types.js";
 
 export function readAcoFile(data: ArrayBuffer, preserve = false): Swatch[] {
 	if (!(data instanceof ArrayBuffer)) {
@@ -40,7 +40,7 @@ export function readAcoFile(data: ArrayBuffer, preserve = false): Swatch[] {
 			values = values as AcoColorValues;
 			let name = '';
 			if (version === 2) {
-				name = reader.readAdobeUnicodeString();
+				name = readAdobeUnicodeString(reader);
 			}
 			swatches.push([values, space, name]);
 		}
@@ -54,6 +54,12 @@ export function readAcoFile(data: ArrayBuffer, preserve = false): Swatch[] {
 		}
 	} catch (error) {
 		if (error instanceof AcoFileError) throw error;
+		console.error(error);
 		throw AcoFileError.InvalidFile();
 	}
+}
+
+function readAdobeUnicodeString(reader: BinaryFileReader) {
+	const length = reader.readInt32();
+	return reader.readString(length, 'utf16be').slice(0, -1);
 }

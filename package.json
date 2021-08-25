@@ -3,15 +3,29 @@
   "version": "0.1.0",
   "description": "read and create Adobe .aco color swatches",
   "main": "build/index.js",
+  "type": "module",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "test": "mocha test/test.js"
   },
   "repository": "https://github.com/szydlovski/adobe-aco",
-  "keywords": ["adobe", "aco", "palette"],
+  "keywords": [
+    "adobe",
+    "aco",
+    "palette"
+  ],
   "author": {
     "name": "Kamil Szydlowski",
     "email": "kamil.szydlovski@gmail.com",
     "url": "https://szydlovski.com"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@szydlovski/binary-file": "^0.1.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.1",
+    "jest": "^27.0.6",
+    "mocha": "^9.1.0"
+  }
 }

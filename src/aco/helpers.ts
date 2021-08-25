@@ -1,4 +1,4 @@
-import { AcoColorSpaceName } from "./AcoColorSpace";
+import { AcoColorSpaceName } from "./AcoColorSpace.js";
 
 const INT_16_MAX = 65535;
 

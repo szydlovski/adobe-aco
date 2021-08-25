@@ -1,7 +1,7 @@
-import { BinaryFileWriter } from "../binaryFile";
-import { lookupColorSpaceId } from "./AcoColorSpace";
-import { scaleAcoColorValues } from "./helpers";
-import { Swatch } from "./types";
+import { BinaryFileWriter } from "@szydlovski/binary-file";
+import { lookupColorSpaceId } from "./AcoColorSpace.js";
+import { scaleAcoColorValues } from "./helpers.js";
+import { Swatch } from "./types.js";
 
 export function createAcoFile(swatches: Swatch[], preserve = false) {
 	let scaledSwatches;
@@ -30,7 +30,7 @@ export function createAcoFile(swatches: Swatch[], preserve = false) {
 		}
 	}
 	writer.writeInt16(2);
-	writer.movePosition(2);
+	writer.writeInt16(length);
 	for (const [values, space, name] of scaledSwatches) {
 		const spaceId = lookupColorSpaceId(space);
 		writer.writeInt16(spaceId);
@@ -42,7 +42,14 @@ export function createAcoFile(swatches: Swatch[], preserve = false) {
 				writer.writeInt16(value);
 			}
 		}
-		writer.writeAdobeUnicodeString(name);
+		writeAdobeUnicodeString(writer, name);
 	}
 	return writer.buffer;
+}
+
+function writeAdobeUnicodeString(writer: BinaryFileWriter, value: string) {
+	const length = value.length;
+	writer.writeInt32(length + 1);
+	writer.writeString(value, 'utf16be');
+	writer.writeInt16(0);
 }
