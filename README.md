@@ -1,5 +1,7 @@
 # adobe-aco
 
+[![npm version](https://badge.fury.io/js/adobe-aco.svg)](https://badge.fury.io/js/adobe-aco)
+
 Read and create Adobe `.aco` color swatches. Implemented according to [official Adobe specs](https://www.adobe.com/devnet-apps/photoshop/fileformatashtml/).
 
 # Usage
