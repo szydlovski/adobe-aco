@@ -5,6 +5,9 @@ import { scaleAcoColorValues } from "./helpers";
 import { Swatch, AcoFileVersion, AcoColorValues } from "./types";
 
 export function readAcoFile(data: ArrayBuffer, preserve = false): Swatch[] {
+	if (!(data instanceof ArrayBuffer)) {
+		throw AcoFileError.NotArrayBuffer();
+	}
 	try {
 		const reader = new BinaryFileReader(data);
 		let version: AcoFileVersion;

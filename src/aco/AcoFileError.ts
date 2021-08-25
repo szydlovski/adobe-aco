@@ -15,4 +15,7 @@ export class AcoFileError extends Error {
 	static UnsupportedColorSpaceName(name: string) {
 		return new AcoFileError(`Unsupported color space name: ${name}`);
 	}
+	static NotArrayBuffer() {
+		return new AcoFileError(`First argument to readAcoFile must be an ArrayBuffer`);
+	}
 }
